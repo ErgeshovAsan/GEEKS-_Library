@@ -1,0 +1,18 @@
+{% load static %}
+{% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'css/hastags.css' %}">
+<link rel="stylesheet" href="{% static 'css/book.css' %}">
+<br><br>
+    {% for i in all_book %}
+    <div class="card">
+        <h1>{{ i.name }}</h1>
+        <p>{{ i.price }}</p>
+    </div>
+    {% endfor %}
+
+<div class="buttons">
+            <button><a href="{% url 'fairy_tale_book' %}">Сказка</a></button>
+            <button><a href="{% url 'fantastic_book' %}">Фантастика</a></button>
+            <button><a href="{% url 'drama_book' %}">Драмма</a></button>
+</div>
+{% include 'components/footer.html' %}

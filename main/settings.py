@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'library',
     'hastags',
+    'my_orders',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,14 @@
+{% load static %}
+{% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'css/hastags.css' %}">
+<br><br>
+    {% for i in fairy_tale_book %}
+    <div class="card">
+        <h1>{{ i.name }}</h1>
+        <p>{{ i.price }}</p>
+    </div>
+    {% endfor %}
+
+
+
+{% include 'components/footer.html' %}

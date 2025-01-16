@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OrderDetail</title>
+</head>
+<body>
+<h1>Имя и Фамилия: {{ order_id.name }}</h1>
+<p>Номер телефона: {{ order_id.phon }}</p>
+<p>Название и цена книги: {{ order_id.choice_book }}</p>
+<p>Доставка: {{ order_id.checked }}</p>
+<p>Адрес доставки: {{ order_id.delivery_address }}</p>
+<p>Кольичество: {{ order_id.quantity }}</p>
+<p>Промокод: {{ order_id.promo_code }}</p>
+<p>{{ order_id.created_at }}</p>
+<p>{{ order_id.update_at }}</p>
+</body>
+</html>
