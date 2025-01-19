@@ -1,26 +1,39 @@
 from django.shortcuts import render
 from . import models
+from django.views import generic
 
-def all_book(request):
-    if request.method == 'GET':
-        all_book = models.Book.objects.all()
-        context = {'all_book': all_book}
-        return render(request, template_name='hastags/all_book.html', context=context)
 
-def fairy_tale_book(request):
-    if request.method == 'GET':
-        fairy_tale_book = models.Book.objects.filter(tags__name='Сказка')
-        context = {'fairy_tale_book': fairy_tale_book}
-        return render(request, template_name='hastags/fairy_tale_book.html', context=context)
+class AllBookView(generic.ListView):
+    template_name = 'hastags/all_book.html'
+    context_object_name = 'all_book'
+    model = models.Book
 
-def fantastic_book(request):
-    if request.method == 'GET':
-        fantastic_book = models.Book.objects.filter(tags__name='Фантастика')
-        context = {'fantastic_book': fantastic_book}
-        return render(request, template_name='hastags/fantastic_book.html', context=context)
+    def get_queryset(self):
+        return self.model.objects.all()
 
-def drama_book(request):
-    if request.method == 'GET':
-        drama_book = models.Book.objects.filter(tags__name='Драмма')
-        context = {'drama_book': drama_book}
-        return render(request, template_name='hastags/drama_book.html', context=context)
+
+class FairyTaleBookView(generic.ListView):
+    template_name = 'hastags/fairy_tale_book.html'
+    context_object_name = 'fairy_tale_book'
+    model = models.Book
+
+    def get_queryset(self):
+        return self.model.objects.filter(tags__name='Сказка')
+
+
+class FantasticBookView(generic.ListView):
+    template_name = 'hastags/fantastic_book.html'
+    context_object_name = 'fantastic_book'
+    model = models.Book
+
+    def get_queryset(self):
+        return self.model.objects.filter(tags__name='Фантастика')
+
+
+class DramaBookView(generic.ListView):
+    template_name = 'hastags/drama_book.html'
+    context_object_name = 'drama_book'
+    model = models.Book
+
+    def get_queryset(self):
+        return self.model.objects.filter(tags__name='Драмма')
