@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'library',
     'hastags',
     'my_orders',
+    'parser_mybook',
 ]
 
 MIDDLEWARE = [
