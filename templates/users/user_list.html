@@ -1,0 +1,18 @@
+<li>Добро пожаловать</li>
+<ol>
+  {% for i in person %}
+    <li>
+      <p>{{ i.username }}</p>
+      <p>{{ i.expe }}</p>
+        {% if i.club %}
+      <p>Этот человек получает - {{ i.club }}</p>
+        {% else %}
+        <p>Зарплату не получает</p>
+        {% endif %}
+    </li>
+  {% endfor %}
+</ol>
+<form action="{% url 'users:login' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Выйти</button>
+</form>
