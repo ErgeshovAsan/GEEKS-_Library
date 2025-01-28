@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IngredientCreate</title>
+</head>
+<body>
+<form action="/ingredient_create/" method="POST" enctype="multipart/form-data" >
+    {%srf_token %}
+    {{ form.as_p }}
+  <button type="submit">Добавить ингредиент</button>
+</form>
+</body>
+</html>

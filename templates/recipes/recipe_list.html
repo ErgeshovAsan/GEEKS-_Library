@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Список рецептов</h1>
+<a href="{% url 'recipe_create' %}">Добавить рецепт</a>
+<ul>
+    {% for i in recipe_list %}
+    <li>
+        {{ i.title }}
+        <button><a href="/recipe_detail/{{ i.id }}/">Подробнее</a></button>
+      <button><a href="/recipe_delete/{{ i.id }}/delete/">Удалить</a></button>
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'my_orders',
     'parser_mybook',
     'users',
+    'recipe',
 ]
 
 MIDDLEWARE = [
