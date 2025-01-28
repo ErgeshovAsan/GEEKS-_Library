@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class RecipeModel(models.Model):
     title = models.CharField(max_length=100, verbose_name='название рецепта')
@@ -6,6 +7,9 @@ class RecipeModel(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('recipe_detail', args=[str(self.id)])
 
 
 class IngredientModel(models.Model):

@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IngredientCreate</title>
+    <title>Добавить ингредиент</title>
 </head>
 <body>
-<form action="/ingredient_create/" method="POST" enctype="multipart/form-data" >
-    {%srf_token %}
+<h1>Добавить ингредиент к "{{ recipe.title }}"</h1>
+<form method="post">
+    {% csrf_token %}
     {{ form.as_p }}
-  <button type="submit">Добавить ингредиент</button>
+    <button type="submit">Сохранить</button>
 </form>
+<a href="{% url 'recipe_detail' recipe.id %}">Назад</a>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Список рецептов</title>
 </head>
 <body>
 <h1>Список рецептов</h1>
@@ -11,8 +11,8 @@
     {% for i in recipe_list %}
     <li>
         {{ i.title }}
-        <button><a href="/recipe_detail/{{ i.id }}/">Подробнее</a></button>
-      <button><a href="/recipe_delete/{{ i.id }}/delete/">Удалить</a></button>
+        <button><a href="{% url 'recipe_detail' i.id %}">Подробнее</a></button>
+        <button><a href="{% url 'recipe_delete' i.id %}">Удалить</a></button>
     </li>
     {% endfor %}
 </ul>
