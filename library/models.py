@@ -1,5 +1,8 @@
 from django.db import models
 
+class Slider(models.Model):
+    image_slide = models.ImageField(upload_to='slider/')
+
 class Books(models.Model):
     GENRE_CHOICES = (
         ('Фантастика', 'Фантастика'),

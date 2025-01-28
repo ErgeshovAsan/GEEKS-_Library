@@ -3,23 +3,74 @@
 <link rel="stylesheet" href="{% static 'css/book.css' %}">
 <!-- Контент с карточками -->
 <div class="container mt-4 content">
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="https://avatars.mds.yandex.net/get-mpic/1589815/img_id7331493219658002357.jpeg/orig" alt="Slide 1">
+            </div>
+            <div class="slide">
+                <img src="https://i.pinimg.com/originals/09/e2/20/09e220318c1a10a270c2e64596fae335.jpg" alt="Slide 2">
+            </div>
+            <div class="slide">
+                <img src="https://cdn1.ozone.ru/s3/multimedia-b/6872149343.jpg" alt="Slide 3">
+            </div>
+        </div>
+    </div>
+
     <div class="row justify-content-center">
         {% for i in book_list %}
-        <!-- Пример карточки книги -->
+        <!-- Пример для еще одной карточки -->
         <div class="col-md-4 mb-4">
             <div class="card" style="width: 100%;">
-                <img src="{{ i.image.url }}" class="card-img-top" alt="Обложка книги">
+                <img src="{{ i.image.url }}" class="card-img-top" alt="вставьте логику картинки">
                 <div class="card-body">
                     <h5 class="card-title">{{ i.title }}</h5>
-                    <p class="card-text">{{ i.created_at}}</p>
+                    <p class="card-text">{{ i.created_at }}</p>
                     <a href="/book_detail/{{ i.id }}/" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
         </div>
         {% endfor %}
-        <!-- Добавьте дополнительные карточки книг здесь -->
     </div>
 </div>
 
-<!-- Футер -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .slider-container {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .slider {
+        display: flex;
+        width: 300%;
+        animation: slide 24s infinite linear; /* Smooth 24s loop, linear timing for constant speed */
+    }
+
+    .slide {
+        width: 100%;
+        height: 300px;
+        flex-shrink: 0;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Prevent image cropping */
+    }
+
+    @keyframes slide {
+        0% { transform: translateX(0); }
+        33.33% { transform: translateX(-100%); }
+        66.66% { transform: translateX(-200%); }
+        100% { transform: translateX(-300%); }
+    }
+</style>
+<!--Футер-->
 {% include 'components/footer.html' %}

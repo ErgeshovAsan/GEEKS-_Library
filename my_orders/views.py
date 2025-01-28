@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . import models, forms
 from django.views import generic
-
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+from django.core.cache import cache
 
 
 class CreateOrderView(generic.CreateView):
@@ -14,13 +16,18 @@ class CreateOrderView(generic.CreateView):
         return super(CreateOrderView, self).form_valid(form=form)
 
 
+@method_decorator(cache_page(60*15), name='dispatch')
 class OrderListView(generic.ListView):
     template_name = 'order/order_list.html'
     context_object_name = 'order_list'
     model = models.OrderModel
 
     def get_queryset(self):
-        return self.model.objects.all().order_by("-id")
+        orders = cache.get('orders')
+        if not orders:
+            orders = self.model.objects.all().order_by("-id")
+            cache.set('orders', orders, 60*15)
+        return orders
 
 
 class OrderDetailView(generic.DetailView):

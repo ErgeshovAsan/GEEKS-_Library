@@ -2,6 +2,7 @@
 from pathlib import Path
 import os
 from . import admin_panel
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,14 +12,17 @@ JAZZMIN_UI_TWEAKS = admin_panel.JAZZMIN_UI_TWEAKS
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
+load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o-w(w5bpq33^7_uc*262q5c750&4i6@k5g*mu#^lj&jd=c9o(0'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.getenv('DEBUG') == 'on':
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -116,6 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
 MEDIA_ROOT = os.path.join(BASE_DIR / "media")
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
