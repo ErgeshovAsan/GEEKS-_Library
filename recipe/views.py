@@ -17,7 +17,7 @@ class RecipeDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['ingredients'] = self.object.ingredientmodel_set.all()  # Получаем связанные ингредиенты
+        context['ingredients'] = self.object.ingredientmodel_set.all()
         return context
 
 class RecipeCreateView(generic.CreateView):
